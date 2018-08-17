@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="User account registration" />
+<meta name="author" content="Amir Boroumand" />
+<link rel="icon" href="favicon.ico" />
+
+<title>Notes</title>
+
+<!-- Bootstrap core CSS -->
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+<link th:href="@{css/style.css}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<div class="container" style="margin-top: 5%;">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div>
+					<h3 class="col-xs-4">Notes</h3>
+					<button class="btn btn-primary pull-right" data-toggle="modal"
+						data-target="#myModal">Add Notes</button>
+				</div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Sr.No</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Created on</th>
+							<th>Updated on</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Test</td>
+							<td>test description</td>
+							<td>ata</td>
+							<td>atacg</td>
+							<td>&nbsp;&nbsp;&nbsp;<i class="fa fa-pencil h-cursor"
+								aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+								class="fa fa-trash h-cursor" aria-hidden="true"></i></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal for adding/editing notes -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+
+					<form id="loginform" class="form-horizontal" role="form">
+
+						<div style="margin-bottom: 25px">
+							<input id="notes-title" type="text" class="form-control"
+								name="title" value="" placeholder="Notes title" />
+						</div>
+
+						<div style="margin-bottom: 25px">
+							<textarea id="notes-description" class="form-control"
+								name="description" placeholder="description"></textarea>
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+	<!-- Bootstrap Validator plugin -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+</body>
+</html>
