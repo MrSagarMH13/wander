@@ -36,12 +36,15 @@ public class Notes {
 	@NotEmpty(message = "Please provide a description")
 	private String description;
 
+	@Column(name="created_on")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
+	@Column(name="updated_on")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 
+	@Column(name="is_deleted")
 	private boolean isDeleted = false;
 
 	public int getId() {

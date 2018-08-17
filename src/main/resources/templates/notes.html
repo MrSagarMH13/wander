@@ -45,12 +45,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Test</td>
-							<td>test description</td>
-							<td>ata</td>
-							<td>atacg</td>
+						<tr th:each="note : ${notes}">
+							<td th:text="${note.id}" />
+							<td th:text="${note.title}" />
+							<td th:text="${note.description}" />
+							<td th:text="${note.createdOn}" />
+							<td th:text="${note.updatedOn}" />
 							<td>&nbsp;&nbsp;&nbsp;<i class="fa fa-pencil h-cursor"
 								aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-trash h-cursor" aria-hidden="true"></i></td>
