@@ -10,9 +10,9 @@ import com.wander.model.Notes;
 @Repository
 public interface NotesRepository extends JpaRepository<Notes, Long> {
 
-	Notes findById(Integer id);
+	Notes findById(Long id);
 
 	@Query("UPDATE Notes SET isDeleted = true WHERE id =:id")
-	void updateIsDeletedById(@Param("id") Integer id);
+	void updateIsDeletedById(@Param("id") Long id);
 
 }

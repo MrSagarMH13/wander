@@ -26,7 +26,7 @@ public class Notes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 
 	@Column(name = "title", nullable = false)
 	@NotEmpty(message = "Please provide a title")
@@ -47,11 +47,11 @@ public class Notes {
 	@Column(name="is_deleted")
 	private boolean isDeleted = false;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

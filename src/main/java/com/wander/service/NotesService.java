@@ -22,7 +22,7 @@ public class NotesService {
 		return notesRepository.findAll();
 	}
 
-	public Notes findById(Integer id) {
+	public Notes findById(Long id) {
 		return notesRepository.findById(id);
 	}
 
@@ -34,7 +34,8 @@ public class NotesService {
 		notesRepository.saveAndFlush(note);
 	}
 
-	public void deleteNotes(Integer id) {
+	public void deleteNotes(Long id) {
 		notesRepository.updateIsDeletedById(id);
 	}
+
 }
