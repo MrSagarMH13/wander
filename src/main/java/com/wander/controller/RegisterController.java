@@ -1,11 +1,18 @@
 package com.wander.controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wander.model.Role;
 import com.wander.model.User;
+import com.wander.service.RoleService;
 import com.wander.service.UserService;
 
 /**
@@ -30,6 +39,9 @@ public class RegisterController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	RoleService roleService;
 
 	@RequestMapping("/ping")
 	@ResponseBody
@@ -51,6 +63,7 @@ public class RegisterController {
 			BindingResult bindingResult) {
 
 		User userExists = userService.findByEmail(user.getEmail());
+
 		if (userExists != null) {
 			modelAndView.addObject("alreadyRegisteredMessage",
 					"Oops!  There is already a user registered with the email provided.");
@@ -63,9 +76,9 @@ public class RegisterController {
 		} else {
 			user.setEnabled(true);
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			Role userRole = roleService.findByRole("ADMIN");
+			user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 			userService.saveUser(user);
-			// modelAndView.addObject("confirmationMessage", "Account created
-			// successfully for user " + user.getEmail());
 			modelAndView.setViewName("redirect:/login");
 		}
 
@@ -104,5 +117,14 @@ public class RegisterController {
 		}
 
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login";
 	}
 }
