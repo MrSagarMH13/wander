@@ -86,9 +86,12 @@ public class RegisterController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView showLoginPage(ModelAndView modelAndView) {
-		modelAndView.setViewName("login");
-		return modelAndView;
+	public String showLoginPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
