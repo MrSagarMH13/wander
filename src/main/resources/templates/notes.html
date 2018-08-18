@@ -30,8 +30,10 @@
 			<div class="panel-body">
 				<div>
 					<h3 class="col-xs-4">Notes</h3>
-					<button class="btn btn-primary pull-right" data-toggle="modal"
-						data-target="#myModal">Add Notes</button>
+					<a href="#" th:href="@{/notesEdit}" class="pull-right"><i
+						class="fa fa-file
+								h-cursor" aria-hidden="true"></i>New
+						Notes</a>
 				</div>
 				<table class="table table-bordered">
 					<thead>
@@ -49,8 +51,11 @@
 							<td th:text="${note.id}" />
 							<td th:text="${note.title}" />
 							<td th:text="${note.description}" />
-							<td th:text="${note.createdOn}" />
-							<td th:text="${note.updatedOn}" />
+							<!-- 2018-08-18 10:43:30 -->
+							<td
+								th:text="${#dates.format(note.createdOn, 'MMM dd, yyyy HH:mm:ss')}" />
+							<td
+								th:text="${#dates.format(note.updatedOn, 'MMM dd, yyyy HH:mm:ss')}" />
 							<td>&nbsp;&nbsp;&nbsp;<a href="#"
 								th:href="@{/notesEdit/__${note.id}__}"><i
 									class=" fa fa-pencil

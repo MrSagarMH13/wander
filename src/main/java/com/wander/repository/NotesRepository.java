@@ -1,6 +1,7 @@
 package com.wander.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,8 @@ public interface NotesRepository extends JpaRepository<Notes, Long> {
 
 	Notes findById(Long id);
 
-	@Query("UPDATE Notes SET isDeleted = true WHERE id =:id")
-	void updateIsDeletedById(@Param("id") Long id);
+	@Query("DELETE FROM Notes WHERE id =:id")
+	@Modifying
+	void removeNotes(@Param("id") Long id);
 
 }

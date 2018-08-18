@@ -13,7 +13,6 @@
 <title>Sign-In</title>
 
 <!-- Bootstrap core CSS -->
-<!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 
@@ -41,45 +40,46 @@
 
 					<div th:if="${errorMessage}" class="alert alert-danger"
 						role="alert" th:text="${errorMessage}"></div>
+					<div style="padding-top: 30px" class="panel-body">
+						<form class="form-horizontal" autocomplete="off" action="#"
+							th:action="@{/login}" method="post" role="form"
+							data-toggle="validator">
 
-					<form class="form-horizontal" autocomplete="off" action="#"
-						th:action="@{/login}" method="post" role="form"
-						data-toggle="validator">
+							<div class="form-group input-group has-feedback">
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-envelope"></span>
+								</span> <input type="email" name="email" placeholder="Email Address"
+									class="form-control" data-error="This email address is invalid"
+									th:required="required" /> <span
+									class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
-						<div class="form-group input-group has-feedback">
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-envelope"></span>
-							</span> <input type="email" name="email" placeholder="Email Address"
-								class="form-control" data-error="This email address is invalid"
-								th:required="required" /> <span
-								class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							</div>
 
-						</div>
+							<div class="form-group input-group">
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-lock"></span>
+								</span> <input name="password" type="password" id="password"
+									placeholder="Password" class="form-control"
+									th:required="required" /> <span class="glyphicon"
+									aria-hidden="true"></span>
+							</div>
 
-						<div class="form-group input-group">
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-lock"></span>
-							</span> <input name="password" type="password" id="password"
-								placeholder="Password" class="form-control"
-								th:required="required" /> <span class="glyphicon"
-								aria-hidden="true"></span>
-						</div>
+							<div class="form-group ">
+								<button type="submit" class="btn btn-primary login-button">Login</button>
+							</div>
 
-						<div class="form-group ">
-							<button type="submit" class="btn btn-primary login-button">Login</button>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-12 control">
-								<div
-									style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
-									Don't have an account! <a href="#" th:href="@{/register}">
-										Sign Up Here </a>
+							<div class="form-group">
+								<div class="col-md-12 control">
+									<div
+										style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
+										Don't have an account! <a href="#" th:href="@{/register}">
+											Sign Up Here </a>
+									</div>
 								</div>
 							</div>
-						</div>
 
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

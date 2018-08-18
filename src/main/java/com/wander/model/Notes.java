@@ -12,6 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
  * 
@@ -36,15 +38,17 @@ public class Notes {
 	@NotEmpty(message = "Please provide a description")
 	private String description;
 
-	@Column(name="created_on")
+	@Column(name = "created_on")
+	@DateTimeFormat(iso = ISO.DATE)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
-	@Column(name="updated_on")
+	@Column(name = "updated_on")
+	@DateTimeFormat(iso = ISO.DATE)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 
-	@Column(name="is_deleted")
+	@Column(name = "is_deleted")
 	private boolean isDeleted = false;
 
 	public Long getId() {

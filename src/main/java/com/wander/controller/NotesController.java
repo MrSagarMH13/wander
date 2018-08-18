@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wander.model.Notes;
 import com.wander.service.NotesService;
+import com.wander.util.DateUtil;
 
 @Controller
 public class NotesController {
@@ -39,6 +40,12 @@ public class NotesController {
 
 	@RequestMapping(value = "/notesEdit", method = RequestMethod.POST)
 	public String notesEdit(Model model, Notes notes) {
+		if (notes.getId() != null)
+			notes.setUpdatedOn(DateUtil.getCurrentDate());
+		else {
+			notes.setCreatedOn(DateUtil.getCurrentDate());
+			notes.setUpdatedOn(DateUtil.getCurrentDate());
+		}
 		notesService.saveNotes(notes);
 		model.addAttribute("notes", notesService.findAll());
 		return "notes";
@@ -46,8 +53,7 @@ public class NotesController {
 
 	@RequestMapping(value = "/notesDelete/{id}", method = RequestMethod.GET)
 	public String notesDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
-		notesService.deleteNotes(id);
-		;
+		notesService.removeNotes(id);
 		model.addAttribute("notes", notesService.findAll());
 		return "notes";
 	}

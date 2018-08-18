@@ -61,13 +61,22 @@ input, input::-webkit-input-placeholder {
 	text-align: center;
 }
 
-.login .panel-heading, .login .panel-title, .login .forgot-pass a {
+.login .panel-heading, .login .panel-title, .login .forgot-pass a,
+	.notes .panel-heading, .notes .panel-title {
 	background-color: #337ab7 !important;
 	color: #FFF;
 }
 
 .login .panel-body {
 	padding: 45px;
+}
+
+.notes .panel-body {
+	padding: 40px !important;
+}
+
+i {
+	margin-right: 10px;
 }
 
 .h-cursor {
