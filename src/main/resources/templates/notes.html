@@ -53,9 +53,9 @@
 							<td th:text="${note.description}" />
 							<!-- 2018-08-18 10:43:30 -->
 							<td
-								th:text="${#dates.format(note.createdOn, 'MMM dd, yyyy HH:mm:ss')}" />
+								th:text="${note.createdOn != null } ? ${#dates.format(note.createdOn, 'MMM dd, yyyy HH:mm:ss')} : ''" />
 							<td
-								th:text="${#dates.format(note.updatedOn, 'MMM dd, yyyy HH:mm:ss')}" />
+								th:text="${note.updatedOn != null} ? ${#dates.format(note.updatedOn, 'MMM dd, yyyy HH:mm:ss')} : ''" />
 							<td>&nbsp;&nbsp;&nbsp;<a href="#"
 								th:href="@{/notesEdit/__${note.id}__}"><i
 									class=" fa fa-pencil
