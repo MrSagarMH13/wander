@@ -50,9 +50,7 @@ public class RegisterController {
 	public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid User user,
 			BindingResult bindingResult) {
 
-		// Lookup user in database by e-mail
 		User userExists = userService.findByEmail(user.getEmail());
-
 		if (userExists != null) {
 			modelAndView.addObject("alreadyRegisteredMessage",
 					"Oops!  There is already a user registered with the email provided.");

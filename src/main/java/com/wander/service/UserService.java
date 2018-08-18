@@ -1,10 +1,6 @@
 package com.wander.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.wander.model.User;
-import com.wander.repository.UserRepository;
 
 /**
  * 
@@ -12,22 +8,10 @@ import com.wander.repository.UserRepository;
  *
  */
 
-@Service("userService")
-public class UserService {
+public interface UserService {
 
-	private UserRepository userRepository;
+	public User findByEmail(String email);
 
-	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-
-	public User findByEmail(String email) {
-		return userRepository.findByEmail(email);
-	}
-
-	public void saveUser(User user) {
-		userRepository.save(user);
-	}
+	public void saveUser(User user);
 
 }

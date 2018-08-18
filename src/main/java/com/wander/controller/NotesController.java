@@ -31,7 +31,7 @@ public class NotesController {
 	@RequestMapping(value = { "/notesEdit", "/notesEdit/{id}" }, method = RequestMethod.GET)
 	public String notesEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
 		if (null != id) {
-			model.addAttribute("notes", notesService.mapNotesDTO(notesService.findById(id)));
+			model.addAttribute("notes", notesService.findById(id));
 		} else {
 			model.addAttribute("notes", new NotesDTO());
 		}
